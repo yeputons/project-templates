@@ -1,5 +1,7 @@
 .PHONY: all clean
 
+# Based on https://github.com/yeputons/project-templates
+
 TARGETS=main
 SRCS_main=$(wildcard $(SRCDIR)/*.cpp)
 BINDIR=.bin
