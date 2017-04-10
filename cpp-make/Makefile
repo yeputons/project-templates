@@ -4,12 +4,12 @@
 
 TARGETS=main
 SRCS_main=$(wildcard $(SRCDIR)/*.cpp)
-BINDIR=.bin
+OBJDIR=.obj
 SRCDIR=src
 INCDIR=inc
 
 all: $(TARGETS)
-main: $(SRCS_main:$(SRCDIR)/%.cpp=$(BINDIR)/%.o)
+main: $(SRCS_main:$(SRCDIR)/%.cpp=$(OBJDIR)/%.o)
 
 CXX=g++
 CXXFLAGS=-pedantic -Wall -Wshadow -Wextra -Werror -std=c++11 -I$(INCDIR)
@@ -19,13 +19,13 @@ LDLIBS=
 $(TARGETS):
 	$(CXX) -o $@ $(LDFLAGS) $^ $(LDLIBS)
 
-$(BINDIR)/%.o: $(SRCDIR)/%.cpp | $(BINDIR)
+$(OBJDIR)/%.o: $(SRCDIR)/%.cpp | $(OBJDIR)
 	$(CXX) $(CXXFLAGS) -MMD -MP -c -o $@ $<
 
-$(BINDIR):
-	mkdir $(BINDIR)
+$(OBJDIR):
+	mkdir $(OBJDIR)
 
 clean:
-	rm -rf $(TARGETS) $(BINDIR)
+	rm -rf $(TARGETS) $(OBJDIR)
 
-include $(wildcard $(BINDIR)/*.d)
+include $(wildcard $(OBJDIR)/*.d)
