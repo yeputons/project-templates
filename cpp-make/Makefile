@@ -26,6 +26,6 @@ $(BINDIR):
 	mkdir $(BINDIR)
 
 clean:
-	rm -rf $(TARGETS) .bin
+	rm -rf $(TARGETS) $(BINDIR)
 
 include $(wildcard $(BINDIR)/*.d)
